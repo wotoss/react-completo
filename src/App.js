@@ -1,27 +1,13 @@
 import React, { Component } from "react";
+import Membro from "./componentes/Membro";
+
 
 class App extends Component{
-    constructor(props){
-       super(props);
-         this.state = {
-             hora: '00:00:00'
-          };
-    }
- componentDidMount(){ //componentDidMount => ele roda após ser montado o componente na tela
-     setInterval(()=>{
-         this.setState({hora: new Date().toLocaleTimeString()})
-     }, 1000);
- }
 
- componentDidUpdate(){
-     console.log('Atualizou !!');
- }
-
-  
     render(){
         return(
            <div>
-             <h1>Meu Projeto {this.state.hora}</h1>             
+             <Membro nome="Visitante" />            
            </div>
         );
     }
