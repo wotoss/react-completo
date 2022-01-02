@@ -1,0 +1,23 @@
+.container{
+   display: flex;
+   /*seria o que esta dentro do container, ficar um em baixo do outro*/
+   /*se fosse row seria um do lado do outro */
+   flex-direction: column; 
+   /*quero que pegue1 100% da tela  */
+   width: 100%;
+   /*fazer o alinhamento ao centro*/
+   justify-content: center;
+   align-items: center;
+}
+
+img{
+    width: 300px;
+    height: 300px;
+    margin-top: 50px;
+}
+
+.textoFrase{
+    font-style: italic;
+    color: #dd7b22;
+    text-align: center;
+}

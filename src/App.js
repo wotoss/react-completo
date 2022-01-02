@@ -1,59 +1,55 @@
 import React, { Component } from "react";
+import './estilo.css';
 
 
 
 class App extends Component{
-
+    //crio o construtor
     constructor(props){
-        super(props);
-        this.state = {
-          form:{
-             nome: '',
-             email: '',
-             senha: '',
-             sexo: ''
-          }
-        }
-        this.dadosForm = this.dadosForm.bind(this);
+       super(props);
+       this.state = {};
+       this.textoFrase = '';
+       this.quebraBiscoito = this.quebraBiscoito.bind(this);
+       this.frases = ['Siga os bons e aprenda com eles.', 'O bom-senso vale mais do que muito',
+                      'O riso é a menor distância entre duas pessoas', 'Deixe de lado as preocupações e seja feliz',
+                      'Realize o óbvio, pense no improvável e conquiste o impossível',
+                     'Acredite em milagres, mas não dependa deles', 'A maior barreira para o sucesso é o medo do fracasso']
     }
 
-    dadosForm(e){
-       let form = this.state.form;
-       form[e.target.name] = e.target.value;
-       this.setState({form: form});
+    quebraBiscoito(){
+      //acessando as states
+      let state = this.state;
+      //1- eu pego o tamanho da quantidade de frase que eu tenho (this.frases.length).
+      //2- depois eu multiplico o tamanho vezes o numrero radomico ou aliatorio (Math.random())
+      //3- logo eu passo ele como numero inteiro (Math.floor).
+      //4- por ultimo eu armazeno ele dentro da (let = numeroAleatorio)
+      let numeroAleatorio = Math.floor(Math.random() * this.frases.length);
+      //exemplo => digamos que o numero aliatorio seja (0) então ele pega a primeira posição que esta a frase (this.frases[numeroAleatorio];)
+      //depois passa o estado que vai enviar a fraze para o textoFrase criado ( state.textoFrase )
+      state.textoFrase = '" ' + this.frases[numeroAleatorio] + ' "';
+      /*aqui nos atualizamos o state*/
+      this.setState(state);
     }
 
     render(){
         return(
-            <div>
-              <h1>Login</h1>
-            
-                  <label>Nome</label>
-                  <input type="text" name="nome" value={this.state.form.nome}
-                   onChange={this.dadosForm} /><br/><br/>
-                   
-                   <label>Email</label>
-                   <input type="email" name="email" value={this.state.form.email}
-                   onChange={this.dadosForm} /><br/><br/>
-                   
-                   <label>Senha</label>
-                   <input type="password" name="senha" value={this.state.form.senha} 
-                   onChange={this.dadosForm}/><br/><br/>
-
-                  Sexo:
-                  <select name="sexo" value={this.state.form.sexo} onChange={this.dadosForm}>
-                    <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
-                  </select>
-
-                  <div>
-                      <h3>{this.state.form.email}</h3>
-                      <h3>{this.state.form.senha}</h3>
-                      <h3>{this.state.form.sexo}</h3>
-                  </div>
-
+            <div className="container">
+               <img src={require('./assets/biscoito.png')} className="img" />
+               <Botao nome="Abrir biscoito" acaoBtn={this.quebraBiscoito}/>
+               <h3 className="textoFrase">{this.state.textoFrase}</h3>
             </div>
         );
     }
 }
+class Botao extends Component{
+  render(){
+    return(
+      <div>
+         <button onClick={this.props.acaoBtn}>{this.props.nome}</button>
+      </div>
+    );
+  }
+}
+
+
 export default App;
